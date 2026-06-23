@@ -1,0 +1,74 @@
+[
+  {
+    "id": "everpeak",
+    "title": "Everpeak",
+    "desc": "在永恒的山峦间攀登，于光影错落中探寻前路。这不仅是一场高度的跨越，更是心灵的升华。",
+    "category": "策略",
+    "tags": ["攀登", "回合", "山"],
+    "cover": "assets/cover_everpeak.png",
+    "url": "../Everpeak/index.html",
+    "featured": true,
+    "status": "playable",
+    "sort": 10
+  },
+  {
+    "id": "overlogic",
+    "title": "Overlogic",
+    "desc": "打破既定的思维边界，在几何与逻辑的迷宫中重塑认知。唯有跳出规则，方能直击核心。",
+    "category": "解谜",
+    "tags": ["逻辑", "几何", "迷宫"],
+    "cover": "assets/cover_overlogic.png",
+    "url": "../Overlogic/index.html",
+    "featured": true,
+    "status": "playable",
+    "sort": 20
+  },
+  {
+    "id": "tide-anchor",
+    "title": "Tide Anchor",
+    "desc": "潮汐之下，锚声沉沉。于涨落之间维系一座孤岛的灯火，听海叙述被遗忘的航路。",
+    "category": "策略",
+    "tags": ["海", "资源", "慢"],
+    "cover": null,
+    "url": "",
+    "featured": false,
+    "status": "draft",
+    "sort": 30
+  },
+  {
+    "id": "moth-lantern",
+    "title": "Moth Lantern",
+    "desc": "扑火者非痴，向光者有其志。引一队飞蛾穿过夜林，在灯与影之间谱写最短的诗。",
+    "category": "解谜",
+    "tags": ["夜", "路径", "小品"],
+    "cover": null,
+    "url": "",
+    "featured": false,
+    "status": "draft",
+    "sort": 40
+  },
+  {
+    "id": "nine-tails",
+    "title": "Nine Tails",
+    "desc": "九尾之狐，每失一尾便得一段记忆。于山月下重构一段被剪去的过往。",
+    "category": "叙事",
+    "tags": ["狐", "记忆", "山月"],
+    "cover": null,
+    "url": "",
+    "featured": false,
+    "status": "draft",
+    "sort": 50
+  },
+  {
+    "id": "woodwork",
+    "title": "Woodwork",
+    "desc": "刨花如雪，榫卯无言。以双手将一段旧木修作器物，听年轮在刀下低语。",
+    "category": "叙事",
+    "tags": ["手作", "木", "慢"],
+    "cover": null,
+    "url": "",
+    "featured": false,
+    "status": "draft",
+    "sort": 60
+  }
+]

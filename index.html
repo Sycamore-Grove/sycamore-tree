@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>悬铃木林 · Sycamore Grove</title>
+  <meta name="description" content="典雅精致的游戏平台 · 悬铃木林 · Sycamore Grove" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+  <noscript><style>.reveal{opacity:1!important;transform:none!important;animation:none!important}.hero__title,.hero__en,.hero__desc,.hero__btn{opacity:1!important;transform:none!important}.filters,.tagbar,.sortbar{display:none!important}</style></noscript>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <a href="#library" class="skip">跳至内容</a>
+  <div class="page">
+  <nav class="nav" id="nav" aria-label="主导航">
+    <div class="nav__inner">
+      <a class="nav__brand" href="#home">
+        <svg class="nav__leaf" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="11.5" r="9" stroke="currentColor" stroke-width="1" opacity="0.18" />
+          <path d="M12 21.5V5" /><path d="M12 16.5c-3.5 0-6-2.5-6-5.5s2.5-4.5 6-4.5" fill="currentColor" fill-opacity="0.03" />
+          <path d="M12 16.5c3.5 0 6-2.5 6-5.5s-2.5-4.5-6-4.5" fill="currentColor" fill-opacity="0.03" />
+          <path d="M12 11.5c-2 0-3.5-1.5-3.5-3.5S10 4.5 12 4.5" fill="currentColor" fill-opacity="0.05" />
+          <path d="M12 11.5c2 0 3.5-1.5 3.5-3.5S14 4.5 12 4.5" fill="currentColor" fill-opacity="0.05" />
+        </svg>
+        <span class="nav__name">Sycamore Grove</span>
+      </a>
+      <div class="nav__right">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><circle cx="8.5" cy="8.5" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="13" y1="13" x2="18" y2="18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input type="search" class="search-input" id="search" placeholder="搜索游戏…" aria-label="搜索游戏" />
+          <span class="search-hint">/</span>
+        </div>
+        <button class="nav-btn" id="theme-toggle" aria-label="切换深色模式" title="切换深色模式">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.38 5.38 0 0 1-4.4 2.26 5.4 5.4 0 0 1-5.14-5.14c0-1.87 1-3.52 2.5-4.43A9.07 9.07 0 0 0 12 3z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" style="display:none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav__links">
+          <a href="#home" class="is-active" aria-current="page">林间</a>
+          <a href="#library">藏阁</a>
+          <a href="#about">关于</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero__light hero__light--1"></div>
+      <div class="hero__light hero__light--2"></div>
+      <div class="hero__light hero__light--3"></div>
+      <div class="hero__content">
+        <h1 class="hero__title">悬铃木林</h1>
+        <p class="hero__en">Sycamore Grove</p>
+        <p class="hero__desc">林间疏影，叶落无声<br />一方静谧的游戏之所</p>
+        <a href="#library" class="hero__btn">步入林中</a>
+      </div>
+      <div class="hero__fade"></div>
+    </section>
+    <section class="lib" id="library">
+      <header class="sec-header reveal"><h2>藏阁</h2><p>The Library</p></header>
+      <div class="filters" id="filters"><button class="filter is-active" data-cat="all">全部</button></div>
+      <div class="tagbar" id="tagbar" hidden></div>
+      <div class="sortbar">
+        <span class="sortbar__count" id="result-count"></span>
+        <button class="sortbar__toc-btn" id="toc-toggle" aria-expanded="false" aria-controls="toc">卷目 ▾</button>
+        <div class="sortbar__right">
+          <label class="sortbar__label">排序</label>
+          <select class="sortbar__select" id="sort-select" aria-label="排序方式">
+            <option value="default">默认</option>
+            <option value="recent">近游</option>
+            <option value="fav">留印</option>
+            <option value="title">题名</option>
+          </select>
+        </div>
+      </div>
+      <aside class="toc" id="toc" hidden></aside>
+      <section class="recent" id="recent" hidden>
+        <div class="recent__title"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>最近游玩</div>
+        <div class="recent__grid" id="recent-grid"></div>
+      </section>
+      <div class="cards" id="game-grid"></div>
+      <div class="empty-state" id="empty-state">
+        <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11.5" r="9" stroke="currentColor" stroke-width="1" opacity="0.18"/><path d="M12 21.5V5"/><path d="M12 16.5c-3.5 0-6-2.5-6-5.5s2.5-4.5 6-4.5" fill="currentColor" fill-opacity="0.03"/><path d="M12 16.5c3.5 0 6-2.5 6-5.5s-2.5-4.5-6-4.5" fill="currentColor" fill-opacity="0.03"/></svg>
+        <p id="empty-msg">无匹配的游戏</p>
+        <button class="empty-state__clear" id="empty-clear" hidden>清空搜索与筛选</button>
+      </div>
+    </section>
+    <section class="about-sec" id="about">
+      <header class="sec-header reveal"><h2>关于</h2><p>About</p></header>
+      <div class="about__body reveal">
+        <blockquote class="about__quote"><p>「叶落无声，光影有序。」</p></blockquote>
+        <p>悬铃木林 (Sycamore Grove) 是一方专注于典雅格调的网页游戏平台。我们相信，优秀的创意与深邃的逻辑如同落在林间的树叶，虽无声息，却能折射出最动人的光影。</p>
+        <p>这里没有喧嚣与繁冗，只为喜爱游戏的你留下一片安静漫步、指尖探索的自得之所。静听叶落，轻抚光影，期待你在林间寻得独属于你的沉浸时刻。</p>
+      </div>
+    </section>
+  </main>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="游戏详情" hidden>
+    <div class="modal__backdrop" id="modal-close"></div>
+    <div class="modal__panel">
+      <button class="modal__close" id="modal-x" aria-label="关闭">✕</button>
+      <div class="modal__cover" id="modal-cover"></div>
+      <div class="modal__body">
+        <span class="modal__tag" id="modal-tag"></span>
+        <div class="modal__tags" id="modal-tags"></div>
+        <div class="modal__header-row">
+          <h2 class="modal__title" id="modal-title"></h2>
+          <button class="modal__fav-btn" id="modal-fav" aria-label="收藏游戏" title="收藏游戏"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+        </div>
+        <p class="modal__idx" id="modal-idx"></p>
+        <p class="modal__desc" id="modal-desc"></p>
+        <div class="modal__nav">
+          <button data-dir="prev" aria-label="上一作">‹ 上一作</button>
+          <button data-dir="next" aria-label="下一作">下一作 ›</button>
+        </div>
+        <button class="modal__btn" id="modal-btn" style="border:none;cursor:pointer">进入游戏</button>
+      </div>
+    </div>
+  </div>
+  <div class="game-player" id="game-player" aria-hidden="true">
+    <div class="game-player__header">
+      <div class="game-player__title" id="game-player-title">游戏名称</div>
+      <div class="game-player__controls">
+        <button class="game-player__btn" id="game-player-reload" aria-label="重新加载"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg><span>重载</span></button>
+        <button class="game-player__btn" id="game-player-fullscreen" aria-label="全屏游玩"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg><span>全屏</span></button>
+        <button class="game-player__btn game-player__btn--primary" id="game-player-close" aria-label="退出游玩"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span>返回林间</span></button>
+      </div>
+    </div>
+    <div class="game-player__frame-wrap">
+      <div class="game-player__loading" id="game-player-loading"><svg viewBox="0 0 24 24" width="48" height="48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="11.5" r="9" stroke="currentColor" stroke-width="1" opacity="0.18"/><path d="M12 21.5V5"/><path d="M12 16.5c-3.5 0-6-2.5-6-5.5s2.5-4.5 6-4.5" fill="currentColor" fill-opacity="0.03"/><path d="M12 16.5c3.5 0 6-2.5 6-5.5s-2.5-4.5-6-4.5" fill="currentColor" fill-opacity="0.03"/></svg><p>正在步入游戏世界…</p></div>
+      <iframe class="game-player__iframe" id="game-player-iframe" src="" title="游戏画面"></iframe>
+    </div>
+  </div>
+  <button class="to-top" id="to-top" aria-label="回到顶部"><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><polyline points="4 12 10 6 16 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <footer class="foot">
+    <div class="foot__inner">
+      <svg class="foot__leaf" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11.5" r="9" stroke="currentColor" stroke-width="1" opacity="0.18"/><path d="M12 21.5V5"/><path d="M12 16.5c-3.5 0-6-2.5-6-5.5s2.5-4.5 6-4.5" fill="currentColor" fill-opacity="0.03"/><path d="M12 16.5c3.5 0 6-2.5 6-5.5s-2.5-4.5-6-4.5" fill="currentColor" fill-opacity="0.03"/></svg>
+      <p class="foot__line">叶落无声，光影有序</p>
+      <p class="foot__copy">Sycamore Grove · MMXXVI</p>
+    </div>
+  </footer>
+  </div>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

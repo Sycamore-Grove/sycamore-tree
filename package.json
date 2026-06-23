@@ -1,0 +1,14 @@
+{
+  "name": "sycamore-grove",
+  "version": "1.0.0",
+  "description": "悬铃木林 · 典雅精致的游戏平台",
+  "private": true,
+  "scripts": {
+    "test": "mocha test/*.test.js --reporter spec",
+    "check": "node scripts/check.js",
+    "validate": "node scripts/validate.js"
+  },
+  "devDependencies": {
+    "mocha": "^11.7.6"
+  }
+}
