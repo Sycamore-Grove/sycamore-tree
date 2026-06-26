@@ -98,7 +98,9 @@
       sec = document.createElement("div");
       sec.className = "featured";
       sec.innerHTML = '<div class="featured__title">林中精选</div><div class="featured__grid"></div>';
-      lib.insertBefore(sec, $("recent").parentElement.querySelector(".filters"));
+      // 插入到筛选条之前（藏阁 section 的第一个子节点之后的合理位置）
+      const filters = $("filters");
+      lib.insertBefore(sec, filters);
     }
     const grid = sec.querySelector(".featured__grid");
     grid.innerHTML = featured.map(g => {
@@ -205,16 +207,16 @@
     empty.classList.remove("is-visible");
     const q = searchQuery.trim();
     const hi = (s) => {
-      if (!q) return esc(s);
-      const esc_s = esc(s), qi = q.toLowerCase(), si = s.toLowerCase();
+      if (!q || !s) return esc(s ?? "");
+      const qi = q.toLowerCase(), si = s.toLowerCase();
       let out = "", i = 0;
       while (i < s.length) {
         const idx = si.indexOf(qi, i);
-        if (idx < 0) { out += esc_s.slice(esc(s.slice(0,i)).length); break; }
+        if (idx < 0) { out += esc(s.slice(i)); break; }
         out += esc(s.slice(i, idx)) + '<mark class="hl">' + esc(s.slice(idx, idx + q.length)) + '</mark>';
         i = idx + q.length;
       }
-      return out || esc_s;
+      return out || esc(s);
     };
     grid.innerHTML = filtered.map((g, i) => {
       const bg = g.cover
@@ -393,7 +395,8 @@
     const search = $("search");
     search.addEventListener("input", () => {
       clearTimeout(searchTimer);
-      searchTimer = setTimeout(() => { searchQuery = search.value; applyFilter(); }, 180);
+      searchQuery = search.value; // 立即同步，避免 debounce 期间 applyFilter 读到旧值
+      searchTimer = setTimeout(() => { applyFilter(); }, 180);
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "/" && document.activeElement !== search && $("modal").hidden && !$("game-player").classList.contains("is-open")) {
