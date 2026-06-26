@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everpeak · 永恒之巅</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&family=Noto+Serif+SC:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f3;
+      --fg: #2a2520;
+      --accent: #8a7245;
+      --border: rgba(42, 37, 32, 0.1);
+      --font-serif: "Playfair Display", "Noto Serif SC", serif;
+      --font-sans: "Inter", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #141210;
+        --fg: #e6e1da;
+        --accent: #c5ad7d;
+        --border: rgba(245, 240, 230, 0.1);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+      text-align: center;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: 32px;
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+    .subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--accent);
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+    .story {
+      font-family: var(--font-serif);
+      font-size: 15px;
+      margin-bottom: 30px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--fg);
+      opacity: 0.85;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 30px;
+      border-top: 1px dashed var(--border);
+      border-bottom: 1px dashed var(--border);
+      padding: 15px 0;
+      font-size: 14px;
+    }
+    .stat-val {
+      font-weight: 500;
+      color: var(--accent);
+      font-size: 18px;
+      margin-top: 4px;
+    }
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    button {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--fg);
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-serif);
+      font-size: 15px;
+      transition: all 0.25s ease;
+    }
+    button:hover:not(:disabled) {
+      background: var(--accent);
+      color: var(--bg);
+      box-shadow: 0 4px 12px rgba(138, 114, 69, 0.15);
+    }
+    button:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Everpeak</h1>
+    <div class="subtitle">永恒之巅 · 攀登与抉择</div>
+    
+    <div class="story" id="story-text">
+      你站在永恒山脉的脚下。寒风在峭壁间呼啸，山顶隐没在云雾之中。前方的路充满未知。
+    </div>
+    
+    <div class="stats">
+      <div>
+        <div>高度</div>
+        <div class="stat-val" id="stat-height">0m</div>
+      </div>
+      <div>
+        <div>体力</div>
+        <div class="stat-val" id="stat-stamina">100</div>
+      </div>
+      <div>
+        <div>体温</div>
+        <div class="stat-val" id="stat-warmth">100</div>
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button id="btn-climb">迈步攀登</button>
+      <button id="btn-rest">扎营休息</button>
+      <button id="btn-restart" style="display:none">重新开始</button>
+    </div>
+  </div>
+
+  <script>
+    let height = 0;
+    let stamina = 100;
+    let warmth = 100;
+    let gameOver = false;
+    let audioCtx = null;
+
+    const storyEl = document.getElementById("story-text");
+    const heightEl = document.getElementById("stat-height");
+    const staminaEl = document.getElementById("stat-stamina");
+    const warmthEl = document.getElementById("stat-warmth");
+    const btnClimb = document.getElementById("btn-climb");
+    const btnRest = document.getElementById("btn-rest");
+    const btnRestart = document.getElementById("btn-restart");
+
+    function playTone(freq, dur, vol = 0.05) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + dur);
+        osc.start();
+        osc.stop(audioCtx.currentTime + dur + 0.02);
+      } catch(e) {}
+    }
+
+    function updateUI() {
+      heightEl.textContent = `${height}m`;
+      staminaEl.textContent = stamina;
+      warmthEl.textContent = warmth;
+
+      if (gameOver) {
+        btnClimb.style.display = "none";
+        btnRest.style.display = "none";
+        btnRestart.style.display = "block";
+      } else {
+        btnClimb.style.display = "block";
+        btnRest.style.display = "block";
+        btnRestart.style.display = "none";
+      }
+    }
+
+    function checkState() {
+      if (height >= 1000) {
+        gameOver = true;
+        storyEl.textContent = "你终于踏上了永恒之巅的顶峰！云海在脚下翻滚，朝阳破晓。你赢了，获得了心灵的终极平静。";
+        playTone(523.25, 0.4); // C5
+        setTimeout(() => playTone(659.25, 0.4), 150); // E5
+        setTimeout(() => playTone(783.99, 0.6), 300); // G5
+      } else if (stamina <= 0) {
+        gameOver = true;
+        storyEl.textContent = "你的体力彻底耗尽，倒在厚厚的积雪中。永恒的山风将带走你的名字。";
+        playTone(196, 0.8); // G3
+      } else if (warmth <= 0) {
+        gameOver = true;
+        storyEl.textContent = "冰冷侵蚀了你的肢体，你无法再次站立。山顶依然耸立，而你成为了它的一部分。";
+        playTone(196, 0.8);
+      }
+      updateUI();
+    }
+
+    btnClimb.addEventListener("click", () => {
+      if (gameOver) return;
+      playTone(440, 0.08);
+      const roll = Math.random();
+      if (roll < 0.6) {
+        const h = Math.floor(Math.random() * 80) + 70;
+        const s = Math.floor(Math.random() * 15) + 10;
+        const w = Math.floor(Math.random() * 12) + 8;
+        height += h;
+        stamina = Math.max(0, stamina - s);
+        warmth = Math.max(0, warmth - w);
+        storyEl.textContent = `攀登顺利！你向上攀爬了 ${h}m，但冷风吹透了衣服。`;
+      } else if (roll < 0.85) {
+        const s = Math.floor(Math.random() * 25) + 15;
+        stamina = Math.max(0, stamina - s);
+        storyEl.textContent = "遇到了一处陡峭的斜坡，你费尽九牛二虎之力才翻越过去，体力消耗巨大。";
+      } else {
+        const w = Math.floor(Math.random() * 25) + 15;
+        warmth = Math.max(0, warmth - w);
+        storyEl.textContent = "突如其来的暴风雪席卷了山谷！你紧抱岩石，刺骨的严寒让你瑟瑟发抖。";
+      }
+      checkState();
+    });
+
+    btnRest.addEventListener("click", () => {
+      if (gameOver) return;
+      playTone(330, 0.12);
+      stamina = Math.min(100, stamina + 30);
+      warmth = Math.min(100, warmth + 20);
+      storyEl.textContent = "你寻找了一处岩石避风处，点起微弱的炉火歇息。体温和精力开始恢复。";
+      checkState();
+    });
+
+    btnRestart.addEventListener("click", () => {
+      playTone(587.33, 0.1);
+      height = 0;
+      stamina = 100;
+      warmth = 100;
+      gameOver = false;
+      storyEl.textContent = "你站在永恒山脉的脚下。寒风在峭壁间呼啸，山顶隐没在云雾之中。前方的路充满未知。";
+      updateUI();
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
